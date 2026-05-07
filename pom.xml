@@ -143,12 +143,6 @@
             </exclusions>
         </dependency>
         <dependency>
-            <groupId>com.github.Soldier233</groupId>
-            <artifactId>LockettePro</artifactId>
-            <version>5505be4</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
             <groupId>com.github.Xzavier0722</groupId>
             <artifactId>SlimefunCompLib</artifactId>
             <version>b7a2bd8</version>
