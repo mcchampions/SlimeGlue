@@ -50,3 +50,4 @@ jobs:
         title: "SlimeGlue exp version"
         files: |
           target/SlimeGlue-*.jar
+
