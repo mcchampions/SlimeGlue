@@ -16,6 +16,8 @@ public class CompatibilityModuleManager {
 
     private final Map<String, ACompatibilityModule> disabledModules;
     private final Map<String, ACompatibilityModule> enabledModules;
+    private final Set<IProtectionHandler> enabledProtectionHandlerSet = new HashSet<>();
+    private final Set<IListener> enabledListenerSet = new HashSet<>();
 
     public CompatibilityModuleManager() {
         disabledModules = new HashMap<>();
@@ -44,6 +46,8 @@ public class CompatibilityModuleManager {
         if (module == null) {
             return;
         }
+        enabledProtectionHandlerSet.removeAll(module.getProtectionHandlers());
+        enabledListenerSet.removeAll(module.getListeners());
 
         module.disable();
         disabledModules.put(module.getCompatibilityPluginName(), module);
@@ -51,18 +55,16 @@ public class CompatibilityModuleManager {
 
     public Set<IListener> getListeners(String sfId) {
         Set<IListener> re = new HashSet<>();
-        enabledModules.values().forEach(module -> module.getListeners().forEach(l -> {
+        enabledListenerSet.forEach(l -> {
             if (l.getSubscriptionType() == SubscriptionType.SUBSCRIBE_TYPE_ALL || l.getSubscribedId().contains(sfId)) {
                 re.add(l);
             }
-        }));
+        });
         return re;
     }
 
     public Set<IProtectionHandler> getProtectionHandlers() {
-        Set<IProtectionHandler> re = new HashSet<>();
-        enabledModules.values().forEach(module -> re.addAll(module.getProtectionHandlers()));
-        return re;
+        return enabledProtectionHandlerSet;
     }
 
     private boolean load(ACompatibilityModule module) {
@@ -78,6 +80,8 @@ public class CompatibilityModuleManager {
         try {
             module.enable(plugin);
             enabledModules.put(name, module);
+            enabledProtectionHandlerSet.addAll(module.getProtectionHandlers());
+            enabledListenerSet.addAll(module.getListeners());
             return true;
         } catch (Throwable e) {
             SlimeGlue.logger().e("Exception thrown while loading the compatibility module for " + name);
