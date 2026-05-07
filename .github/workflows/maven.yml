@@ -40,14 +40,10 @@ jobs:
       with:
         name: SlimeGlue.jar
         path: staging
-    - name: Automatic Releases
-      uses: marvinpinto/action-automatic-releases@v1.2.1
-      if: github.event_name != 'pull_request'
+    - name: Capture Release Artifacts
+      uses: actions/upload-artifact@v4
       with:
-        repo_token: "${{ secrets.GITHUB_TOKEN }}"
-        automatic_release_tag: "exp"
-        prerelease: true
-        title: "SlimeGlue exp version"
-        files: |
-          target/SlimeGlue-*.jar
+        name: Artifacts
+        path: |
+          target/*.jar
 
