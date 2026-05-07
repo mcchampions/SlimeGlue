@@ -6,7 +6,7 @@
 
     <groupId>com.xzavier0722.mc.plugin</groupId>
     <artifactId>SlimeGlue</artifactId>
-    <version>1.0.2-${git.commit.id.abbrev}</version>
+    <version>1.0.3</version>
     <packaging>jar</packaging>
 
     <name>SlimeGlue</name>
@@ -19,7 +19,7 @@
     <url>https://github.com/Xzavier0722/SlimeGlue</url>
 
     <build>
-        <finalName>${project.name}-exp-${git.commit.id.abbrev}</finalName>
+        <finalName>${project.name}-exp</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
