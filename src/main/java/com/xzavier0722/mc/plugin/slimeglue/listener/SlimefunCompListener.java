@@ -12,7 +12,6 @@ public class SlimefunCompListener implements Listener {
     @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onCargoOperation(CargoOperationEvent e) {
         var l = e.getTarget().getLocation();
-        v("onCargoOperation: " + l);
         for (var each : SlimeGlue.moduleManager().getProtectionHandlers()) {
             if (each instanceof IBlockProtectionHandler handler && !handler.canCargoAccessBlock(l)) {
                 e.setCancelled(true);
@@ -20,9 +19,4 @@ public class SlimefunCompListener implements Listener {
             }
         }
     }
-
-    private void v(String msg) {
-        SlimeGlue.logger().v("[SlimefunCompListener]: " + msg);
-    }
-
 }

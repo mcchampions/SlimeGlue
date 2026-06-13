@@ -86,10 +86,6 @@
             <id>codemc-repo</id>
             <url>https://repo.codemc.io/repository/maven-public/</url>
         </repository>
-        <repository>
-            <id>lss233-mirror</id>
-            <url>https://lss233.littleservice.cn/repositories/minecraft</url>
-        </repository>
     </repositories>
 
     <dependencies>

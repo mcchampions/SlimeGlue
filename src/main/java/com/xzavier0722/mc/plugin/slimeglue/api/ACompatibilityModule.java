@@ -43,7 +43,6 @@ public abstract class ACompatibilityModule  {
     }
 
     protected void verbose(String msg) {
-        SlimeGlue.logger().v("[" + getClass().getSimpleName() + "]: " + msg);
     }
 
     protected <T> T verbose(String msg, T para) {
