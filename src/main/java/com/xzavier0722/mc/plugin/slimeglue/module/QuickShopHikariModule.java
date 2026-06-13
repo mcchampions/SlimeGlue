@@ -12,6 +12,8 @@ import javax.annotation.Nonnull;
 import java.util.UUID;
 
 public class QuickShopHikariModule extends ACompatibilityModule {
+    public static QuickShopAPI INSTANCE;
+
 
     public QuickShopHikariModule() {
         addProtectionHandler(new IBlockProtectionHandler() {
@@ -38,7 +40,7 @@ public class QuickShopHikariModule extends ACompatibilityModule {
     }
 
     private UUID getQuickshopOwner(@Nonnull Location l) {
-        Shop shop = QuickShopAPI.getInstance().getShopManager().getShop(l);
+        Shop shop = INSTANCE.getShopManager().getShop(l);
         if (shop != null) {
             return shop.getOwner().getUniqueId();
         }
@@ -47,7 +49,7 @@ public class QuickShopHikariModule extends ACompatibilityModule {
     }
 
     private boolean isQuickshop(@Nonnull Location l) {
-        return QuickShopAPI.getInstance().getShopManager().getShop(l) != null;
+        return INSTANCE.getShopManager().getShop(l) != null;
 
     }
 
@@ -58,7 +60,7 @@ public class QuickShopHikariModule extends ACompatibilityModule {
 
     @Override
     public void enable(Plugin plugin) throws Exception {
-
+        INSTANCE = QuickShopAPI.getInstance();
     }
 
     @Override
